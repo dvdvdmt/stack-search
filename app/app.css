@@ -5,10 +5,57 @@ body {
 .label {
     margin: 0 2px;
     cursor: pointer;
+    display: inline-block;
 }
 
 .label:hover {
     background-color: hsl(0, 0%, 30%);
+}
+
+#more-search {
+    right: 0;
+    max-width: 40%;
+    min-width: 22px;
+    height: 100vh;
+    overflow-y: scroll;
+    float: none;
+    position: fixed;
+}
+
+.sidebar .btn-show-hide, .sidebar .more-results {
+    display: inline-block;
+}
+
+.more-results {
+    width: 90%;
+    margin-left: 22px
+}
+
+.btn-show-hide {
+    width: 22px;
+    position: fixed;
+    height: 99vh;
+    line-height: 99vh;
+    background-color: hsl(0, 0%, 13%);
+    cursor: pointer;
+    text-align: center;
+    color: white;
+}
+
+.btn-show-hide:hover {
+    background-color: hsl(0, 0%, 30%);
+}
+
+.btn-show-hide.opened .left {
+    display: none;
+}
+
+.btn-show-hide.closed .right {
+    display: none;
+}
+
+.no-scroll {
+    overflow: hidden;
 }
 
 #search-results .question-title {

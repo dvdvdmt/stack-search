@@ -7,8 +7,46 @@ angular.module('cSearchResults', ['ngRoute'])
             controller: 'SearchResultsCtrl'
         });
     }])
+    .directive('moreInfo', function ($document, $window) {
+        return {
+            restrict: 'E',
+            templateUrl: 'cSearchResults/moreInfo.html',
+            scope: {
+                questions: '=',
+                opened: '='
+            },
+            link: function (scope, elem, attrs) {
+                elem.parent().css({height: $window.innerHeight - 50 + 'px'});
+                var bodyEl = angular.element('body');
+                var showHideEl = angular.element('.btn-show-hide');
+                var moreResultsEl = elem.find('.more-results');
+
+
+                elem.on('mouseenter', function () {
+                    bodyEl.addClass('no-scroll');
+                });
+                elem.on('mouseleave', function () {
+                    bodyEl.removeClass('no-scroll');
+                });
+
+                scope.$watch('opened', function (opened) {
+                    if (opened) {
+                        moreResultsEl.show();
+                        showHideEl.addClass('opened');
+                        showHideEl.removeClass('closed');
+                    } else {
+                        moreResultsEl.hide();
+                        showHideEl.addClass('closed');
+                        showHideEl.removeClass('opened');
+                    }
+                })
+            }
+        }
+    })
     .controller('SearchResultsCtrl', function ($scope, $routeParams, $sce, stackApi) {
+        $scope.rightPanelOpen = false;
         $scope.questions = [];
+        $scope.moreInfo = [];
         $scope.onClickTag = function (tag) {
             // stackApi
         };
@@ -21,7 +59,8 @@ angular.module('cSearchResults', ['ngRoute'])
                     title: $sce.trustAsHtml(question.title),
                     answer_count: question.answer_count,
                     tags: question.tags
-                })
-            })
+                });
+            });
+            $scope.moreInfo = $scope.questions
         });
     });
