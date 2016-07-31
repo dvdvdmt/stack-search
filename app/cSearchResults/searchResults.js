@@ -10,17 +10,16 @@ angular.module('cSearchResults', ['ngRoute'])
     .directive('moreInfo', function ($document, $window) {
         return {
             restrict: 'E',
-            templateUrl: 'cSearchResults/moreInfo.html',
+            templateUrl: 'cSearchResults/panelInfo.html',
             scope: {
                 questions: '=',
-                opened: '='
+                opened: '=',
+                info: '='
             },
             link: function (scope, elem, attrs) {
                 elem.parent().css({height: $window.innerHeight - 50 + 'px'});
                 var bodyEl = angular.element('body');
                 var showHideEl = angular.element('.btn-show-hide');
-                var moreResultsEl = elem.find('.more-results');
-
 
                 elem.on('mouseenter', function () {
                     bodyEl.addClass('no-scroll');
@@ -31,11 +30,9 @@ angular.module('cSearchResults', ['ngRoute'])
 
                 scope.$watch('opened', function (opened) {
                     if (opened) {
-                        moreResultsEl.show();
                         showHideEl.addClass('opened');
                         showHideEl.removeClass('closed');
                     } else {
-                        moreResultsEl.hide();
                         showHideEl.addClass('closed');
                         showHideEl.removeClass('opened');
                     }
@@ -44,16 +41,14 @@ angular.module('cSearchResults', ['ngRoute'])
         }
     })
     .controller('SearchResultsCtrl', function ($scope, $routeParams, $sce, stackApi) {
-        $scope.rightPanelOpen = false;
+        $scope.panelOpen = false;
+        $scope.panelQuestions = [];
         $scope.questions = [];
-        $scope.moreInfo = [];
-        $scope.onClickTag = function (tag) {
-            // stackApi
-        };
 
-        stackApi.questionsByTitle($routeParams.searchText).then(function (res) {
-            res.data.items.forEach(function (question) {
-                $scope.questions.push({
+        function getTableData(items) {
+            var tableData = [];
+            items.forEach(function (question) {
+                tableData.push({
                     id: question.question_id,
                     author: question.owner.display_name,
                     title: $sce.trustAsHtml(question.title),
@@ -61,6 +56,18 @@ angular.module('cSearchResults', ['ngRoute'])
                     tags: question.tags
                 });
             });
-            $scope.moreInfo = $scope.questions
+            return tableData;
+        }
+
+        $scope.onTagClick = function (tag) {
+            $scope.panelOpen = true;
+            $scope.panelInfo = {type: 'tag', tag: tag};
+            stackApi.questionsByTag(tag).then(function (res) {
+                $scope.panelQuestions = getTableData(res.data.items);
+            })
+        };
+
+        stackApi.questionsByTitle($routeParams.searchText).then(function (res) {
+            $scope.questions = getTableData(res.data.items);
         });
     });

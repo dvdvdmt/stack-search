@@ -1,5 +1,5 @@
 <div class="row">
-    <div id="search-results" ng-class="{'col-md-12':!rightPanelOpen, 'col-md-7':rightPanelOpen}">
+    <div id="search-results" ng-class="{'col-md-12':!panelOpen, 'col-md-7':panelOpen}">
         <table class="table table-striped table-hover">
             <thead>
             <tr>
@@ -14,10 +14,12 @@
                 <td><b class="author-name">{{question.author}}</b></td>
                 <td><a class='question-title' href="#/question/{{question.id}}" ng-bind-html="question.title"></a></td>
                 <td><a href="#/question/{{question.id}}"><span class="badge">{{question.answer_count}}</span></a></td>
-                <td><span class="label label-default" ng-repeat="tag in question.tags">{{tag}}</span></td>
+                <td>
+                    <span class="label label-default" ng-click="onTagClick(tag)" ng-repeat="tag in question.tags">{{tag}}</span>
+                </td>
             </tr>
             </tbody>
         </table>
     </div>
-    <more-info questions="moreInfo" opened="rightPanelOpen"></more-info>
+    <more-info questions="panelQuestions" opened="panelOpen" info="panelInfo"></more-info>
 </div>

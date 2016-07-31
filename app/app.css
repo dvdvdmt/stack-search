@@ -27,9 +27,18 @@ body {
 }
 
 .more-results {
-    width: 90%;
     margin-left: 22px
 }
+
+.more-results table {
+    min-width: 400px;
+    table-layout: fixed;
+}
+
+.more-results table td {
+    word-wrap: break-word;
+}
+
 
 .btn-show-hide {
     width: 22px;
