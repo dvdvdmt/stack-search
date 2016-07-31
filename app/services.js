@@ -27,5 +27,10 @@ angular.module('stackSearchServices', [])
             angular.extend(params, apiParams);
             return $http.get(baseUrl + '/tags/' + tag + '/faq', {params: params})
         };
+        o.questionsByAuthor = function (id) {
+            var params = {sort: 'votes', order: 'desc'};
+            angular.extend(params, apiParams);
+            return $http.get(baseUrl + '/users/' + id + '/questions', {params: params})
+        };
         return o;
     });

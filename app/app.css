@@ -39,6 +39,9 @@ body {
     word-wrap: break-word;
 }
 
+.more-results h3 {
+    text-align: center;
+}
 
 .btn-show-hide {
     width: 22px;

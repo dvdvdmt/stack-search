@@ -51,6 +51,7 @@ angular.module('cSearchResults', ['ngRoute'])
                 tableData.push({
                     id: question.question_id,
                     author: question.owner.display_name,
+                    author_id: question.owner.user_id,
                     title: $sce.trustAsHtml(question.title),
                     answer_count: question.answer_count,
                     tags: question.tags
@@ -63,6 +64,14 @@ angular.module('cSearchResults', ['ngRoute'])
             $scope.panelOpen = true;
             $scope.panelInfo = {type: 'tag', tag: tag};
             stackApi.questionsByTag(tag).then(function (res) {
+                $scope.panelQuestions = getTableData(res.data.items);
+            })
+        };
+
+        $scope.onAuthorClick = function (authorId, author) {
+            $scope.panelOpen = true;
+            $scope.panelInfo = {type: 'author', author: author};
+            stackApi.questionsByAuthor(authorId).then(function (res) {
                 $scope.panelQuestions = getTableData(res.data.items);
             })
         };

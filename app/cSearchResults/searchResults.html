@@ -11,7 +11,11 @@
             </thead>
             <tbody>
             <tr ng-repeat="question in questions">
-                <td><b class="author-name">{{question.author}}</b></td>
+                <td>
+                    <b class="author-name" ng-click="onAuthorClick(question.author_id, question.author)">
+                        {{question.author}}
+                    </b>
+                </td>
                 <td><a class='question-title' href="#/question/{{question.id}}" ng-bind-html="question.title"></a></td>
                 <td><a href="#/question/{{question.id}}"><span class="badge">{{question.answer_count}}</span></a></td>
                 <td>
