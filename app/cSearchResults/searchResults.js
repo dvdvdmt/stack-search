@@ -7,6 +7,13 @@ angular.module('cSearchResults', ['ngRoute'])
             controller: 'SearchResultsCtrl'
         });
     }])
-    .controller('SearchResultsCtrl', function ($scope, $routeParams) {
-        $scope.searchText = $routeParams.searchText;
+    .controller('SearchResultsCtrl', function ($scope, $routeParams, stackApi) {
+        // $scope.
+        $scope.onClickTag = function (tag) {
+            // stackApi
+        };
+
+        stackApi.searchByTitle($routeParams.searchText).then(function (res) {
+            $scope.questions = res.data.items;
+        });
     });
