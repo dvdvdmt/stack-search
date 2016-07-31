@@ -15,6 +15,7 @@ angular.module('cQuestionInfo', ['ngRoute'])
         stackApi.questionById($routeParams.id)
             .then(function (res) {
                 $scope.question = res.data.items[0];
+                $scope.question.title = $sce.trustAsHtml($scope.question.title);
                 $scope.body = $sce.trustAsHtml($scope.question.body);
                 return $scope.question
             }).then(function (question) {

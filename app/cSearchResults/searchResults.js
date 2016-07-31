@@ -50,7 +50,7 @@ angular.module('cSearchResults', ['ngRoute'])
             items.forEach(function (question) {
                 tableData.push({
                     id: question.question_id,
-                    author: question.owner.display_name,
+                    author: $sce.trustAsHtml(question.owner.display_name),
                     author_id: question.owner.user_id,
                     title: $sce.trustAsHtml(question.title),
                     answer_count: question.answer_count,

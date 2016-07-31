@@ -1,4 +1,4 @@
-<h2><b>Q: </b>{{question.title}}</h2>
+<h2><b>Q: </b><span ng-bind-html="question.title"></span></h2>
 <div ng-bind-html="body"></div>
 <h2><b>Answers: {{answers.length}}</b></h2>
 <div ng-repeat="answer in answers">
