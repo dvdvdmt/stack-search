@@ -36,7 +36,10 @@ angular.module('cSearchResults', ['ngRoute'])
                         showHideEl.addClass('closed');
                         showHideEl.removeClass('opened');
                     }
-                })
+                });
+                elem.on('$destroy', function () {
+                    bodyEl.removeClass('no-scroll');
+                });
             }
         }
     })
