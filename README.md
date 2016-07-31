@@ -1,6 +1,6 @@
 Test task for [Piano company](http://piano.io/)  
 
-Demo link on Heroku  
+Demo [link on Heroku](http://stack-search.herokuapp.com/index.html#/)  
 
 To run this app locally you need `Node.js`, `npm` and `bower` installed globally in your system.  
 1. Clone or download project: `git clone https://github.com/dvdvdmt/stack-search.git`  
