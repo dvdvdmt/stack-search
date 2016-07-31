@@ -1,2 +1,18 @@
 <h2><b>Q: </b>{{question.title}}</h2>
 <div ng-bind-html="body"></div>
+<h2><b>Answers: {{answers.length}}</b></h2>
+<div ng-repeat="answer in answers">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="pull-left">
+                Score: <b>{{answer.score}}</b>
+            </div>
+            <div class="pull-right">
+                Answered by <b>{{answer.author}}</b> at <b>{{answer.creation_date | date:'dd-MM-yyyy h:mm'}}</b>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body" ng-bind-html="answer.body">
+        </div>
+    </div>
+</div>
