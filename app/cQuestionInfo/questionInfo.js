@@ -9,6 +9,10 @@ angular.module('cQuestionInfo', ['ngRoute'])
         });
     }])
 
-    .controller('QuestionInfoCtrl', [function () {
+    .controller('QuestionInfoCtrl', function ($scope, $routeParams, $sce, stackApi) {
+        stackApi.queryById($routeParams.id).then(function (res) {
+            $scope.question = res.data.items[0];
+            $scope.body = $sce.trustAsHtml($scope.question.body);
+        })
 
-    }]);
+    });

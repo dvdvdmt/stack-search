@@ -13,7 +13,7 @@ angular.module('cSearchResults', ['ngRoute'])
             // stackApi
         };
 
-        stackApi.searchByTitle($routeParams.searchText).then(function (res) {
+        stackApi.queryByTitle($routeParams.searchText).then(function (res) {
             $scope.questions = res.data.items;
         });
     });

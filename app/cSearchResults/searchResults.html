@@ -10,8 +10,8 @@
     <tbody>
     <tr ng-repeat="question in questions">
         <td>{{question.owner.display_name}}</td>
-        <td>{{question.title}}</td>
-        <td>{{question.answer_count}}</td>
+        <td><a href="#/question/{{question.question_id}}">{{question.title}}</a></td>
+        <td><a href="#/question/{{question.question_id}}">{{question.answer_count}}</a></td>
         <td><span ng-repeat="tag in question.tags">{{tag}}</span></td>
     </tr>
     </tbody>
