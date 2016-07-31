@@ -28,12 +28,13 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Stack Search</a>
+            <a class="navbar-brand" href="#/">Stack Search</a>
         </div>
         <div class="text-center">
             <form class="navbar-form" role="search" ng-submit="onSearch()">
                 <div class="form-group">
-                    <input type="text" class="form-control" ng-model="searchText" placeholder="Search">
+                    <input id="search-input" type="text" class="form-control" ng-model="searchText"
+                           placeholder="Search">
                 </div>
                 <button type="submit" title="Search" class="btn btn-default">
                     <i class="glyphicon glyphicon-search"></i>
