@@ -9,7 +9,7 @@
     </thead>
     <tbody>
     <tr ng-repeat="question in questions">
-        <td><b>{{question.author}}</b></td>
+        <td><b class="author-name">{{question.author}}</b></td>
         <td><a class='question-title' href="#/question/{{question.id}}" ng-bind-html="question.title"></a></td>
         <td><a href="#/question/{{question.id}}"><span class="badge">{{question.answer_count}}</span></a></td>
         <td><span class="label label-default" ng-repeat="tag in question.tags">{{tag}}</span></td>
